@@ -1,13 +1,14 @@
 package servises;
 
-import configuration.ReadProperties;
 import io.restassured.mapper.ObjectMapperType;
 import io.restassured.response.Response;
 import models.Project;
 import org.apache.http.HttpStatus;
+import org.hamcrest.Matchers;
 import utils.Endpoints;
 
 import static io.restassured.RestAssured.given;
+import static org.hamcrest.Matchers.is;
 
 public class ProjectService implements IProjectService {
 
@@ -37,4 +38,19 @@ public class ProjectService implements IProjectService {
                 .as(Project.class, ObjectMapperType.GSON);
     }
 
+    @Override
+    public void getValidateDataTypes(int projectID) {
+        given()
+                .pathParam("project_id", projectID)
+                .when()
+                .get(Endpoints.GET_PROJECT)
+                .then()
+                .statusCode(HttpStatus.SC_OK)
+                .body("id", is(Matchers.instanceOf(Integer.class)))
+                .body("name", is(Matchers.instanceOf(String.class)))
+                .body("is_completed", is(Matchers.instanceOf(Boolean.class)))
+                .body("suite_mode", is(Matchers.instanceOf(Integer.class)))
+                .body("show_announcement", is(Matchers.instanceOf(Boolean.class)))
+                .body("url", is(Matchers.instanceOf(String.class)));
+    }
 }

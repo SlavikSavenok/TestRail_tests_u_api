@@ -2,14 +2,11 @@ package tests.api;
 
 import baseEntities.BaseApiTest;
 import io.restassured.response.Response;
-
-import models.Project;
 import org.apache.http.HttpStatus;
 import org.testng.annotations.Test;
 import utils.Endpoints;
 
 import static io.restassured.RestAssured.given;
-import static org.hamcrest.Matchers.is;
 
 
 public class GetTests extends BaseApiTest {
@@ -24,7 +21,13 @@ public class GetTests extends BaseApiTest {
     @Test(testName = "API GET проверка проекта по id", description = "API GET проверка проекта по id")
     public void getProject() {
         int projectID = 2;
-        Project project = projectService.getProject(projectID);
+        projectService.getProject(projectID);
+    }
+
+    @Test(testName = "API GET проверка типов данных", description = "Проверка корректности типов данных в ответе")
+    public void validateDataTypes() {
+        int projectID = 2;
+        projectService.getValidateDataTypes(projectID);
     }
 
     @Test(testName = "API GET несуществующий проект", description = "API GET несуществующий проект")
@@ -35,5 +38,4 @@ public class GetTests extends BaseApiTest {
                 .then().log().body()
                 .statusCode(HttpStatus.SC_NOT_FOUND);
     }
-
 }
