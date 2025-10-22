@@ -9,7 +9,7 @@ import utils.Endpoints;
 import static io.restassured.RestAssured.given;
 
 
-public class GetTests extends BaseApiTest {
+public class ProjectGetTests extends BaseApiTest {
 
     @Test(testName = "API GET проверка имеющихся проектов", description = "Тест на проверку имеющихся проектов")
     public void getAllProjects() {
@@ -37,5 +37,12 @@ public class GetTests extends BaseApiTest {
                 .get(Endpoints.GET_INVALID_PROJECT)
                 .then().log().body()
                 .statusCode(HttpStatus.SC_NOT_FOUND);
+    }
+
+    @Test(testName = "API GET проверка времени ответа", description = "Проверка что ответ приходит в допустимое время")
+    public void responseTimeTest() {
+        Response response = projectService.getResponseTime();
+
+        System.out.println("Фактическое время ответа: " + response.getTime() + " мс");
     }
 }

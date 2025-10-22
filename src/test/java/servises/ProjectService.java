@@ -9,6 +9,7 @@ import utils.Endpoints;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.lessThan;
 
 public class ProjectService implements IProjectService {
 
@@ -52,5 +53,17 @@ public class ProjectService implements IProjectService {
                 .body("suite_mode", is(Matchers.instanceOf(Integer.class)))
                 .body("show_announcement", is(Matchers.instanceOf(Boolean.class)))
                 .body("url", is(Matchers.instanceOf(String.class)));
+    }
+
+    @Override
+    public Response getResponseTime() {
+        return given()
+                .when()
+                .get(Endpoints.GET_PROJECTS)
+                .then()
+                .statusCode(HttpStatus.SC_OK)
+                .time(lessThan(2000L))
+                .extract()
+                .response();
     }
 }
