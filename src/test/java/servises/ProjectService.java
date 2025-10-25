@@ -1,5 +1,6 @@
 package servises;
 
+import io.restassured.http.ContentType;
 import io.restassured.mapper.ObjectMapperType;
 import io.restassured.response.Response;
 import models.Project;
@@ -65,5 +66,19 @@ public class ProjectService implements IProjectService {
                 .time(lessThan(2000L))
                 .extract()
                 .response();
+    }
+
+    @Override
+    public Project addProject(Project project) {
+        return  given()
+                .contentType(ContentType.JSON)
+                .body(project)
+                .log().body()
+                .when()
+                .post(Endpoints.ADD_PROJECT)
+                .then()
+                .log().body()
+                .statusCode(HttpStatus.SC_OK)
+                .extract().as(Project.class, ObjectMapperType.GSON);
     }
 }

@@ -8,4 +8,5 @@ public interface IProjectService {
     Project getProject(int id);
     void getValidateDataTypes(int id);
     Response getResponseTime();
+    Project addProject(Project project);
 }
