@@ -81,4 +81,28 @@ public class ProjectService implements IProjectService {
                 .statusCode(HttpStatus.SC_OK)
                 .extract().as(Project.class, ObjectMapperType.GSON);
     }
+
+    @Override
+    public Project updateProject(int projectId, Project project) {
+        return given()
+                .contentType(ContentType.JSON)
+                .pathParam("project_id", projectId)
+                .body(project)
+                .log().body()
+                .when()
+                .post(Endpoints.UPDATE_PROJECT) // Нужно добавить этот endpoint
+                .then()
+                .log().body()
+                .statusCode(HttpStatus.SC_OK)
+                .extract().as(Project.class, ObjectMapperType.GSON);
+    }
+
+
+    @Override
+    public Response deleteProject(int projectId) {
+        return given()
+                .pathParam("project_id", projectId)
+                .when()
+                .delete(Endpoints.DELETE_PROJECT);
+    }
 }

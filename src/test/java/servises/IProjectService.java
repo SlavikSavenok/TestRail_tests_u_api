@@ -9,4 +9,6 @@ public interface IProjectService {
     void getValidateDataTypes(int id);
     Response getResponseTime();
     Project addProject(Project project);
+    Project updateProject(int projectId, Project project);
+    Response deleteProject(int projectId);
 }

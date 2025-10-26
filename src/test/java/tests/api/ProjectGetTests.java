@@ -20,13 +20,13 @@ public class ProjectGetTests extends BaseApiTest {
 
     @Test(testName = "API GET проверка проекта по id", description = "API GET проверка проекта по id")
     public void getProject() {
-        int projectID = 2;
+        int projectID = 1;
         projectService.getProject(projectID);
     }
 
     @Test(testName = "API GET проверка типов данных", description = "Проверка корректности типов данных в ответе")
     public void validateDataTypes() {
-        int projectID = 2;
+        int projectID = 1;
         projectService.getValidateDataTypes(projectID);
     }
 
