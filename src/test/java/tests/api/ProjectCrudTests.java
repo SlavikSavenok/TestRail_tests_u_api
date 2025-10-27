@@ -2,6 +2,7 @@ package tests.api;
 
 import baseEntities.BaseApiTest;
 import models.Project;
+import org.apache.http.HttpStatus;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -30,10 +31,10 @@ public class ProjectCrudTests extends BaseApiTest {
 
         Project retrievedProject = projectService.getProject(createdProjectId);
 
-        Assert.assertEquals(retrievedProject.getId(),actualProject.getId());
-        Assert.assertEquals(retrievedProject.getName(),actualProject.getName());
-        Assert.assertEquals(retrievedProject.getAnnouncement(),actualProject.getAnnouncement());
-        Assert.assertEquals(retrievedProject.getShowAnnouncement(),actualProject.getShowAnnouncement());
+        Assert.assertEquals(retrievedProject.getId(), actualProject.getId());
+        Assert.assertEquals(retrievedProject.getName(), actualProject.getName());
+        Assert.assertEquals(retrievedProject.getAnnouncement(), actualProject.getAnnouncement());
+        Assert.assertEquals(retrievedProject.getShowAnnouncement(), actualProject.getShowAnnouncement());
 
     }
 
@@ -50,5 +51,14 @@ public class ProjectCrudTests extends BaseApiTest {
 
         Assert.assertEquals(updateProject.getAnnouncement(), updates.getAnnouncement());
 
+    }
+
+    @Test(testName = "API Delete проверка удаления проекта", description = "Тест на проверку удаления проекта",
+            dependsOnMethods = "updateProjectTest")
+    public void deleteProjectTest() {
+        int projectIdToDelete = actualProject.getId();
+        projectService.deleteProject(projectIdToDelete)
+                .then()
+                .statusCode(HttpStatus.SC_OK);
     }
 }

@@ -11,4 +11,5 @@ public interface IProjectService {
     Project addProject(Project project);
     Project updateProject(int projectId, Project project);
     Response deleteProject(int projectId);
+    Response getProjectResponse(int id);
 }

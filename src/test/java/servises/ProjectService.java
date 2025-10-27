@@ -101,8 +101,24 @@ public class ProjectService implements IProjectService {
     @Override
     public Response deleteProject(int projectId) {
         return given()
+                .contentType(ContentType.JSON)
                 .pathParam("project_id", projectId)
                 .when()
-                .delete(Endpoints.DELETE_PROJECT);
+                .post(Endpoints.DELETE_PROJECT)
+                .then()
+                .log().body()
+                .extract()
+                .response();
+    }
+
+    @Override
+    public Response getProjectResponse(int id) {
+        return given()
+                .pathParam("project_id", id)
+                .when()
+                .get(Endpoints.GET_PROJECT)
+                .then()
+                .log().body()
+                .extract().response();
     }
 }
