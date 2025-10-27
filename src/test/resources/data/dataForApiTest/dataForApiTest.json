@@ -1,0 +1,5 @@
+{
+  "name": "JSON data test",
+  "announcement": "JSON announcement",
+  "show_announcement": false
+}
