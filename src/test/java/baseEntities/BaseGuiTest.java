@@ -6,8 +6,10 @@ import org.openqa.selenium.WebDriver;
 import org.testng.ITestContext;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import pages.LoginPage;
 import services.BrowsersService;
 import services.WaitsService;
+import steps.UserStep;
 
 import java.util.Random;
 
@@ -16,6 +18,8 @@ public class BaseGuiTest {
     protected WaitsService waitsService;
     protected Faker faker;
     protected Random random;
+    protected LoginPage loginPage;
+    protected UserStep userStep;
 
     @BeforeMethod
     public void setup(ITestContext iTestContext) {
@@ -28,6 +32,7 @@ public class BaseGuiTest {
         random = new Random();
 
         driver.get(ReadProperties.getUrl());
+        userStep = new UserStep(driver);
     }
 
     @AfterMethod

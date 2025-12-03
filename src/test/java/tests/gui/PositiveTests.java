@@ -1,0 +1,14 @@
+package tests.gui;
+
+
+import baseEntities.BaseGuiTest;
+import org.testng.annotations.Test;
+
+
+public class PositiveTests extends BaseGuiTest {
+
+    @Test(description = "Успешная авторизация с корректными учетными данными")
+    public void login() {
+        userStep.successfulLogin();
+    }
+}
