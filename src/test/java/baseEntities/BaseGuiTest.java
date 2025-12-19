@@ -7,6 +7,7 @@ import org.testng.ITestContext;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import pages.LoginPage;
+import pages.OnboardingPage;
 import services.BrowsersService;
 import services.WaitsService;
 import steps.UserStep;
@@ -20,6 +21,7 @@ public class BaseGuiTest {
     protected Random random;
     protected LoginPage loginPage;
     protected UserStep userStep;
+    protected OnboardingPage onboardingPage;
 
     @BeforeMethod
     public void setup(ITestContext iTestContext) {
@@ -33,6 +35,8 @@ public class BaseGuiTest {
 
         driver.get(ReadProperties.getUrl());
         userStep = new UserStep(driver);
+        loginPage = new LoginPage(driver);
+        onboardingPage = new OnboardingPage(driver);
     }
 
     @AfterMethod
