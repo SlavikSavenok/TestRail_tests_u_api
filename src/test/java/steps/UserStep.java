@@ -11,13 +11,6 @@ public class UserStep extends BaseStep {
         super(driver);
     }
 
-@Step(value = "Логин")
-    private void login(String email, String password){
-        loginPage.setEmailValue(ReadProperties.username());
-        loginPage.setPasswordValue(ReadProperties.password());
-        loginPage.clickLogin();
-    }
-
     @Step(value = "Успешный логин")
     public void successfulLogin() {
         loginPage.setEmailValue(ReadProperties.username());
@@ -28,7 +21,7 @@ public class UserStep extends BaseStep {
     @Step(value = "Некорректный логин")
     public void invalidLogin() {
         loginPage.setEmailValue(ReadProperties.username());
-        loginPage.setPasswordValue("invalid@gmail.com");
+        loginPage.setPasswordValue("WRONG_PASSWORD_123");
         loginPage.clickLogin();
     }
 }

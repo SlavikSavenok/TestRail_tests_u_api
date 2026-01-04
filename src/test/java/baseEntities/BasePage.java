@@ -3,6 +3,7 @@ package baseEntities;
 import configuration.ReadProperties;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import pages.LoginPage;
 
 public abstract class BasePage {
     protected WebDriver pageDriver;

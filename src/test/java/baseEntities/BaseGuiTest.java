@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.testng.ITestContext;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import pages.DashboardPage;
 import pages.LoginPage;
 import pages.OnboardingPage;
 import services.BrowsersService;
@@ -22,6 +23,7 @@ public class BaseGuiTest {
     protected LoginPage loginPage;
     protected UserStep userStep;
     protected OnboardingPage onboardingPage;
+    protected DashboardPage dashboardPage;
 
     @BeforeMethod
     public void setup(ITestContext iTestContext) {
@@ -37,6 +39,7 @@ public class BaseGuiTest {
         userStep = new UserStep(driver);
         loginPage = new LoginPage(driver);
         onboardingPage = new OnboardingPage(driver);
+        dashboardPage = new DashboardPage(driver);
     }
 
     @AfterMethod

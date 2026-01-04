@@ -14,4 +14,13 @@ public class PositiveTests extends BaseGuiTest {
 
         Assert.assertTrue(onboardingPage.isPageOpened());
     }
+
+    @Test
+    public void addProject() {
+        userStep.successfulLogin();
+        onboardingPage.clickDashboardButton();
+        dashboardPage.clickAddProjectButton();
+
+    }
+
 }
