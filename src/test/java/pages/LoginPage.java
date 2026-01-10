@@ -9,9 +9,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 public class LoginPage extends BasePage {
-    private final By EMAIL_INPUT_LOCATOR = By.xpath("//*[@id='name']");
-    private final By PASSWORD_INPUT_LOCATOR = By.xpath("//*[@id = 'password']");
-    private final By LOGIN_BUTTON_LOCATOR = By.xpath("//*[@id='button_primary']");
+    private final By EMAIL_INPUT_LOCATOR= By.id("name");
+    private final By PASSWORD_INPUT_LOCATOR = By.id("password");
+    private final By LOGIN_BUTTON_LOCATOR = By.id("button_primary");
     private final By LOGIN_ERROR_TEXT_LOCATOR = By.cssSelector("div[data-testid='loginErrorText']");
 
     public LoginPage(WebDriver driver) {
@@ -23,8 +23,8 @@ public class LoginPage extends BasePage {
         return EMAIL_INPUT_LOCATOR;
     }
 
-    public Input getEmailInput() {
-        return new Input(pageDriver, EMAIL_INPUT_LOCATOR);
+    public Input getEmailInput(){
+        return new Input(pageDriver,EMAIL_INPUT_LOCATOR);
     }
 
     public Input getPasswordInput() {
@@ -40,11 +40,11 @@ public class LoginPage extends BasePage {
     }
 
     public void setEmailValue(String value) {
-        getEmailInput().write(value);
+        getEmailInput().clickAndWrite(value);
     }
 
     public void setPasswordValue(String value) {
-        getPasswordInput().write(value);
+        getPasswordInput().clickAndWrite(value);
     }
 
     public void clickLogin() {
