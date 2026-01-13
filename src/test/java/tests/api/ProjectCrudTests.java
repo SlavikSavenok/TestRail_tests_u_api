@@ -1,6 +1,9 @@
 package tests.api;
 
 import baseEntities.BaseApiTest;
+import io.qameta.allure.Description;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
 import models.Project;
 import org.apache.http.HttpStatus;
 import org.testng.Assert;
@@ -8,7 +11,9 @@ import org.testng.annotations.Test;
 
 public class ProjectCrudTests extends BaseApiTest {
 
-    @Test(testName = "API Post проверка создания проекта")
+    @Description("API Post Тест на проверку создания проекта")
+    @Severity(SeverityLevel.CRITICAL)
+    @Test(testName = "API Post проверка создания проекта", description = "API Post Тест на проверку создания проекта")
     public void addProjectTest() {
         Project expectedProject = new Project();
         expectedProject.setName("CRUD Test Project");
@@ -23,6 +28,7 @@ public class ProjectCrudTests extends BaseApiTest {
         Assert.assertEquals(actualProject.getShowAnnouncement(), expectedProject.getShowAnnouncement());
     }
 
+    @Description("Тест на проверку чтения созданного проекта по ID")
     @Test(testName = "API Get проверка чтения созданного проекта",
             description = "Тест на проверку чтения созданного проекта по ID",
             dependsOnMethods = "addProjectTest")
@@ -38,6 +44,8 @@ public class ProjectCrudTests extends BaseApiTest {
 
     }
 
+    @Description("Тест на проверку обновления проекта")
+    @Severity(SeverityLevel.CRITICAL)
     @Test(testName = "API Post проверка обновления проекта", description = "Тест на проверку обновления проекта",
             dependsOnMethods = "addProjectTest")
     public void updateProjectTest() {
@@ -53,6 +61,8 @@ public class ProjectCrudTests extends BaseApiTest {
 
     }
 
+    @Description("API Delete проверка удаления проекта")
+    @Severity(SeverityLevel.CRITICAL)
     @Test(testName = "API Delete проверка удаления проекта", description = "Тест на проверку удаления проекта",
             dependsOnMethods = "updateProjectTest")
     public void deleteProjectTest() {

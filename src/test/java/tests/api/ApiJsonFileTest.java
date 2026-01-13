@@ -1,6 +1,9 @@
 package tests.api;
 
 import baseEntities.BaseApiTest;
+import io.qameta.allure.Description;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.apache.http.HttpStatus;
@@ -12,7 +15,10 @@ import static org.hamcrest.Matchers.is;
 
 public class ApiJsonFileTest extends BaseApiTest {
 
-    @Test(testName = "API Post создание проекта c использованием данных из JSON", description = "API Post создание проекта c использованием данных из JSON")
+    @Description("API Post Тест на проверку создания проекта c использованием данных из JSON")
+    @Severity(SeverityLevel.CRITICAL)
+    @Test(testName = "API Post создание проекта c использованием данных из JSON",
+            description = "API Post создание проекта c использованием данных из JSON")
     public void addProjectUsingJsonFileTest() {
         Response response = given()
                 .contentType(ContentType.JSON)
