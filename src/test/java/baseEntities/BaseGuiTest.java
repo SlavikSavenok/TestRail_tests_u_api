@@ -6,12 +6,11 @@ import org.openqa.selenium.WebDriver;
 import org.testng.ITestContext;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
-import pages.DashboardPage;
-import pages.LoginPage;
-import pages.OnboardingPage;
+import pages.*;
 import services.BrowsersService;
 import services.WaitsService;
-import steps.UserStep;
+import steps.LoginSteps;
+import steps.ProjectSteps;
 
 import java.util.Random;
 
@@ -21,9 +20,12 @@ public class BaseGuiTest {
     protected Faker faker;
     protected Random random;
     protected LoginPage loginPage;
-    protected UserStep userStep;
+    protected LoginSteps loginSteps;
     protected OnboardingPage onboardingPage;
     protected DashboardPage dashboardPage;
+    protected AddProjectPage addProjectPage;
+    protected ProjectSteps projectSteps;
+    protected ProjectsPage projectsPage;
 
     @BeforeMethod
     public void setup(ITestContext iTestContext) {
@@ -36,10 +38,14 @@ public class BaseGuiTest {
         random = new Random();
 
         driver.get(ReadProperties.getUrl());
-        userStep = new UserStep(driver);
+        loginSteps = new LoginSteps(driver);
         loginPage = new LoginPage(driver);
         onboardingPage = new OnboardingPage(driver);
         dashboardPage = new DashboardPage(driver);
+        addProjectPage = new AddProjectPage(driver);
+        projectSteps = new ProjectSteps(driver);
+        projectsPage = new ProjectsPage(driver);
+
     }
 
     @AfterMethod

@@ -13,19 +13,21 @@ public class PositiveTests extends BaseGuiTest {
 
     @Description("Успешная авторизация с корректными учетными данными")
     @Severity(SeverityLevel.CRITICAL)
-    @Test(testName ="Успешная авторизация",
+    @Test(testName = "Успешная авторизация",
             description = "Успешная авторизация с корректными учетными данными")
     public void successfulLogin() {
-        userStep.successfulLogin();
+        loginSteps.successfulLogin();
 
         Assert.assertTrue(onboardingPage.isPageOpened());
     }
 
     @Test
-    public void addProject() {
-        userStep.successfulLogin();
-        onboardingPage.clickDashboardButton();
-        dashboardPage.clickAddProjectButton();
+    public void addProject() throws InterruptedException {
+        projectSteps
+                .navigateToAddProjectPage()
+                .createProject();
+        Assert.assertTrue(projectsPage.isProjectCreated("Pet Project"));
+
 
     }
 

@@ -14,11 +14,10 @@ public class NegativeTests extends BaseGuiTest {
     @Test(testName = "Неуспешная авторизация",
             description = "Попытка авторизации с некорректными учетными данными. Ожидается сообщение об ошибке.")
     public void invalidLogin() {
-        userStep.invalidLogin();
+        loginSteps.invalidLogin();
 
         Assert.assertEquals(loginPage.showLoginErrorMessage(),
                 "Email/Login or Password is incorrect. Please try again.");
-
     }
 }
 

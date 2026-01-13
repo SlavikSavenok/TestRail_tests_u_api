@@ -5,9 +5,9 @@ import configuration.ReadProperties;
 import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 
-public class UserStep extends BaseStep {
+public class LoginSteps extends BaseStep {
 
-    public UserStep(WebDriver driver) {
+    public LoginSteps(WebDriver driver) {
         super(driver);
     }
 
