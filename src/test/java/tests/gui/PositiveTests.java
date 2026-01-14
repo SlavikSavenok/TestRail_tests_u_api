@@ -21,14 +21,24 @@ public class PositiveTests extends BaseGuiTest {
         Assert.assertTrue(onboardingPage.isPageOpened());
     }
 
-    @Test
-    public void addProject() throws InterruptedException {
+    @Description("Тест на создание нового проекта через UI интерфейс")
+    @Severity(SeverityLevel.CRITICAL)
+    @Test(testName = "Создание нового проекта",
+            description = "Проверка успешного создания проекта с заполнением всех полей формы")
+    public void addProject() {
         projectSteps
                 .navigateToAddProjectPage()
                 .createProject();
         Assert.assertTrue(projectsPage.isProjectCreated("Pet Project"));
-
-
     }
 
+    @Description("Тест на удаление существующего проекта")
+    @Severity(SeverityLevel.CRITICAL)
+    @Test(testName = "Удаление проекта Pet Project",
+            description = "Проверка успешного удаления созданного проекта", dependsOnMethods = "addProject")
+    public void deleteProject() throws InterruptedException {
+        projectSteps.navigateToProjectsList();
+        projectSteps.deleteProject("Pet Project");
+
+    }
 }

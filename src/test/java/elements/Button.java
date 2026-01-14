@@ -14,6 +14,7 @@ public class Button {
         uiElement.click();
     }
 
+
     public void submit() {
         uiElement.submit();
     }
@@ -24,5 +25,14 @@ public class Button {
 
     public boolean isEnabled() {
         return uiElement.isEnabled();
+    }
+
+    public void safeClick() {
+        try {
+            click();
+        } catch (Exception e) {
+            System.out.println("Regular click failed, trying JavaScript click...");
+            uiElement.jsClick();
+        }
     }
 }
